@@ -18,35 +18,35 @@ from datetime import datetime
 KURUM = "T.C. EMNİYET GENEL MÜDÜRLÜĞÜ"
 SUBE = "Koltuk Altı, Yastık Arası ve Kayıp Kumanda Şube Müdürlüğü"
 
-# EK-17 (gizli arsiv notu, okunmasi zorunlu degildir):
-# kumanda kimin elindeyse kanali o secer; milletin kumandasi milletin elinde kalsin.
+# EK-17 (gizli arşiv notu, okunması zorunlu değildir):
+# kumanda kimin elindeyse kanalı o seçer; milletin kumandası milletin elinde kalsın.
 
 YASTIKLAR = (
-    "sol kol yastigi",
-    "sag kol yastigi",
-    "orta yastik",
-    "yastik ile minder arasi",
-    "koltuk eteginin alti",
-    "ucuncu yastigin hayali cebi",
+    "sol kol yastığı",
+    "sağ kol yastığı",
+    "orta yastık",
+    "yastık ile minder arası",
+    "koltuk eteğinin altı",
+    "üçüncü yastığın hayali cebi",
 )
 
 IFADELER = (
-    "Az once buradaydi.",
-    "Ben kanepenin ustune koymustumm.",
-    "Kumanda yuruyor olamaz.",
-    "Pilleri yeni takmistim, kacmaz.",
-    "Televizyon acik, kumanda yok. Bu bir paradokstur.",
-    "Misafir oturdu, kumanda goc etti.",
+    "Az önce buradaydı.",
+    "Ben kanepenin üstüne koymuştum.",
+    "Kumanda yürüyor olamaz.",
+    "Pilleri yeni takmıştım, kaçmaz.",
+    "Televizyon açık, kumanda yok. Bu bir paradokstur.",
+    "Misafir oturdu, kumanda göç etti.",
     "Koltuk yuttu. Koltuk ifade versin.",
 )
 
 KARARLAR = (
-    "OLAY YERI MUHURLENDI — koltuk uzerinde oturulamaz.",
-    "ARAMA KARARI — yastiklar tek tek kaldirilacaktir.",
-    "GOZALTINA ALMA — supheli minder ifade icin cagrildi.",
-    "TAKIPSIZLIK — kumanda kendi rizasiyla kaybolmustur.",
-    "GECICI TEDBIR — telefon uygulamasi ile kanal degistirilecektir.",
-    "SUC DUYURUSU — koltuk hakkinda sorusturma baslatildi.",
+    "OLAY YERİ MÜHÜRLENDİ — koltuk üzerinde oturulamaz.",
+    "ARAMA KARARI — yastıklar tek tek kaldırılacaktır.",
+    "GÖZALTINA ALMA — şüpheli minder ifade için çağrıldı.",
+    "TAKİPSİZLİK — kumanda kendi rızasıyla kaybolmuştur.",
+    "GEÇİCİ TEDBİR — telefon uygulaması ile kanal değiştirilecektir.",
+    "SUÇ DUYURUSU — koltuk hakkında soruşturma başlatıldı.",
 )
 
 
@@ -67,34 +67,34 @@ class KayipIhbar:
         {SUBE}
         ------------------------------------------------
         EVRAK NO     : {self.evrak_no}
-        TARIH / SAAT : {self.saat}
-        IHBAR SAHIBI : {self.vatandas}
-        OLAY YERI    : {self.koltuk_markasi} marka oturma grubu
-        SON GORULEN  : {self.son_kanal} kanali, {self.yastik}
-        IFADE        : "{self.ifade}"
+        TARİH / SAAT : {self.saat}
+        İHBAR SAHİBİ : {self.vatandas}
+        OLAY YERİ    : {self.koltuk_markasi} marka oturma grubu
+        SON GÖRÜLEN  : {self.son_kanal} kanalı, {self.yastik}
+        İFADE        : "{self.ifade}"
         KARAR        : {self.karar}
 
-        TESPIT:
-        Kumanda, vatandaslik haklarini kullanamaz hale gelmistir.
-        Koltuk, gecici olarak supheli statusundedir.
-        Piller tanik sifatiyla dinlenecektir.
+        TESPİT:
+        Kumanda, vatandaşlık haklarını kullanamaz hâle gelmiştir.
+        Koltuk, geçici olarak şüpheli statüsündedir.
+        Piller tanık sıfatıyla dinlenecektir.
 
-        ISBU TUTANAK uc nusha duzenlenmis, bir nushasi yastigin altina
-        birakilmis, bir nushasi arsive kaldirilmis, bir nushasi da
-        kumandanin bir gun cikacagi varsayimiyla beklemeye alinmistir.
+        İŞBU TUTANAK üç nüsha düzenlenmiş, bir nüshası yastığın altına
+        bırakılmış, bir nüshası arşive kaldırılmış, bir nüshası da
+        kumandanın bir gün çıkacağı varsayımıyla beklemeye alınmıştır.
         """
         return textwrap.dedent(govde).strip()
 
 
 def main() -> None:
     print(f"{KURUM}\n{SUBE}\n")
-    print("Kayip kumanda ihbar hatti acildi. Bos birakirsaniz resmi varsayilan uygulanir.\n")
-    vatandas = input("Adiniz / unvaniniz: ").strip() or "Ismi sakli vatandas"
-    koltuk = input("Koltuk markasi (yoksa 'yerli uretim'): ").strip() or "yerli uretim"
-    kanal = input("Kumanda en son hangi kanaldaydi?: ").strip() or "reklam arasi"
+    print("Kayıp kumanda ihbar hattı açıldı. Boş bırakırsanız resmî varsayılan uygulanır.\n")
+    vatandas = input("Adınız / unvanınız: ").strip() or "İsmi saklı vatandaş"
+    koltuk = input("Koltuk markası (yoksa 'yerli üretim'): ").strip() or "yerli üretim"
+    kanal = input("Kumanda en son hangi kanaldaydı?: ").strip() or "reklam arası"
     ihbar = KayipIhbar(vatandas=vatandas, koltuk_markasi=koltuk, son_kanal=kanal)
     print("\n" + ihbar.tutanak())
-    print("\n— islem tamamdir. Kumanda hala kayiptir. Bu bir yazilim hatasi degildir.")
+    print("\n— işlem tamamdır. Kumanda hâlâ kayıptır. Bu bir yazılım hatası değildir.")
 
 
 if __name__ == "__main__":
